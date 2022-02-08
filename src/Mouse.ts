@@ -1,8 +1,10 @@
+import EventEmitter from "./EventEmitter.js";
+
 enum Button {
 	left = 0,
 }
 
-class Mouse {
+class Mouse extends EventEmitter<MouseEvent> {
 	element!: HTMLElement;
 
 	under: boolean = false;
@@ -21,6 +23,8 @@ class Mouse {
 	pleft: boolean = false;
 
 	constructor(element: HTMLElement) {
+		super();
+
 		this.element = element;
 
 		this.mousemoveHandler = this.mousemoveHandler.bind(this);
@@ -43,22 +47,30 @@ class Mouse {
 		const y = clientY - top;
 
 		Object.assign(this, { x, y, px: this.x, py: this.y, under: true });
+
+		this.emit("mousemove", e);
 	}
 
 	mouseleaveHandler(e: MouseEvent) {
 		this.under = false;
+
+		this.emit("mouseleave", e);
 	}
 
 	mousedownHandler(e: MouseEvent) {
 		if (e.button === Button.left) {
 			this.left = true;
 		}
+
+		this.emit("mousedown", e);
 	}
 
 	mouseupHandler(e: MouseEvent) {
 		if (e.button === Button.left) {
 			this.left = false;
 		}
+
+		this.emit("mouseup", e);
 	}
 
 	tick() {

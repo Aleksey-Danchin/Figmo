@@ -50,9 +50,9 @@
 	flex-grow: 1;
 }
 
-.content-center canvas {
+/* .content-center canvas {
 	cursor: none;
-}
+} */
 
 .content-right {
 	width: 240px;

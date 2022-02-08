@@ -1,16 +1,14 @@
 import Application from "./Application.js";
+import Curve from "./Curve.js";
+import Point from "./Point.js";
 var app = new Application({
     root: document.querySelector(".content-center"),
     background: "#ededed",
 });
-app.render.subscribe(function () {
-    app.canvas.clear();
-    app.canvas.draw(function (context) {
-        if (app.mouse.under) {
-            context.beginPath();
-            context.arc(app.mouse.x, app.mouse.y, 5, 0, Math.PI * 2);
-            context.fillStyle = app.mouse.left ? "green" : "red";
-            context.fill();
-        }
-    });
-});
+var curve = new Curve();
+curve.add(new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300), new Point(200, 200));
+app.container.add(curve);
+// app.render.subscribe(() => {
+// 	app.canvas.clear();
+// 	app.canvas.draw((context, canvas) => app.container.draw(context, canvas));
+// });

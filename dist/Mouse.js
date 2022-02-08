@@ -1,29 +1,48 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import EventEmitter from "./EventEmitter.js";
 var Button;
 (function (Button) {
     Button[Button["left"] = 0] = "left";
 })(Button || (Button = {}));
-var Mouse = /** @class */ (function () {
+var Mouse = /** @class */ (function (_super) {
+    __extends(Mouse, _super);
     function Mouse(element) {
-        this.under = false;
-        this.punder = false;
-        this.x = 0;
-        this.y = 0;
-        this.px = 0;
-        this.py = 0;
-        this.dx = 0;
-        this.dy = 0;
-        this.left = false;
-        this.pleft = false;
-        this.element = element;
-        this.mousemoveHandler = this.mousemoveHandler.bind(this);
-        this.mouseleaveHandler = this.mouseleaveHandler.bind(this);
-        this.mousedownHandler = this.mousedownHandler.bind(this);
-        this.mouseupHandler = this.mouseupHandler.bind(this);
-        this.element.addEventListener("mousemove", this.mousemoveHandler);
-        this.element.addEventListener("mouseleave", this.mouseleaveHandler);
-        this.element.addEventListener("mouseenter", this.mousemoveHandler);
-        this.element.addEventListener("mousedown", this.mousedownHandler);
-        this.element.addEventListener("mouseup", this.mouseupHandler);
+        var _this = _super.call(this) || this;
+        _this.under = false;
+        _this.punder = false;
+        _this.x = 0;
+        _this.y = 0;
+        _this.px = 0;
+        _this.py = 0;
+        _this.dx = 0;
+        _this.dy = 0;
+        _this.left = false;
+        _this.pleft = false;
+        _this.element = element;
+        _this.mousemoveHandler = _this.mousemoveHandler.bind(_this);
+        _this.mouseleaveHandler = _this.mouseleaveHandler.bind(_this);
+        _this.mousedownHandler = _this.mousedownHandler.bind(_this);
+        _this.mouseupHandler = _this.mouseupHandler.bind(_this);
+        _this.element.addEventListener("mousemove", _this.mousemoveHandler);
+        _this.element.addEventListener("mouseleave", _this.mouseleaveHandler);
+        _this.element.addEventListener("mouseenter", _this.mousemoveHandler);
+        _this.element.addEventListener("mousedown", _this.mousedownHandler);
+        _this.element.addEventListener("mouseup", _this.mouseupHandler);
+        return _this;
     }
     Mouse.prototype.mousemoveHandler = function (e) {
         var clientX = e.clientX, clientY = e.clientY;
@@ -31,19 +50,23 @@ var Mouse = /** @class */ (function () {
         var x = clientX - left;
         var y = clientY - top;
         Object.assign(this, { x: x, y: y, px: this.x, py: this.y, under: true });
+        this.emit("mousemove", e);
     };
     Mouse.prototype.mouseleaveHandler = function (e) {
         this.under = false;
+        this.emit("mouseleave", e);
     };
     Mouse.prototype.mousedownHandler = function (e) {
         if (e.button === Button.left) {
             this.left = true;
         }
+        this.emit("mousedown", e);
     };
     Mouse.prototype.mouseupHandler = function (e) {
         if (e.button === Button.left) {
             this.left = false;
         }
+        this.emit("mouseup", e);
     };
     Mouse.prototype.tick = function () {
         Object.assign({
@@ -54,5 +77,5 @@ var Mouse = /** @class */ (function () {
         });
     };
     return Mouse;
-}());
+}(EventEmitter));
 export default Mouse;
