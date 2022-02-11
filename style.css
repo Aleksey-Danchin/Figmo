@@ -99,6 +99,11 @@
 	background-size: 16px;
 }
 
+.icon-hand {
+	background-image: url("sets/hand.png");
+	background-size: 16px;
+}
+
 .icon-big {
 	background-size: 24px;
 	width: 24px;

@@ -6,3 +6,8 @@ export enum ApplicationMode {
 	Curve, // рисование кривой
 	Selecting, // Натягивание фрейма селектора
 }
+
+export type ActionButton = {
+	type: ApplicationMode;
+	element: HTMLElement;
+};

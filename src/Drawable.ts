@@ -2,7 +2,7 @@ import Rectangle from "./Rectangle.js";
 
 class Drawable extends Rectangle {
 	visible: boolean = true;
-	showBorder: boolean = true;
+	showBorder: boolean = false;
 
 	draw(context: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
 		throw Error(

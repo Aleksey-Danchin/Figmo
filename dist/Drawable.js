@@ -19,7 +19,7 @@ var Drawable = /** @class */ (function (_super) {
     function Drawable() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.visible = true;
-        _this.showBorder = true;
+        _this.showBorder = false;
         return _this;
     }
     Drawable.prototype.draw = function (context, canvas) {

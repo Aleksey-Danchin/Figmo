@@ -69,9 +69,11 @@ var Mouse = /** @class */ (function (_super) {
         this.emit("mouseup", e);
     };
     Mouse.prototype.tick = function () {
-        Object.assign({
+        Object.assign(this, {
             dx: this.x - this.px,
             dy: this.y - this.py,
+            px: this.x,
+            py: this.y,
             pleft: this.left,
             punder: this.under,
         });
