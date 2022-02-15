@@ -1,5 +1,3 @@
-import Render from "./Render";
-
 class Observer<Subscriber extends Function> {
 	subscribers: Subscriber[] = [];
 

@@ -13,6 +13,19 @@ class EventEmitter<T extends Event> {
 		this.handlers.get(name)?.add(handler);
 	}
 
+	off(name: string, handler: (e: Event) => any) {
+		if (!this.handlers.has(name)) {
+			return;
+		}
+
+		const handlers = this.handlers.get(name);
+		handlers?.delete(handler);
+
+		if (handlers?.size === 0) {
+			this.handlers.delete(name);
+		}
+	}
+
 	emit(name: string, event: T) {
 		if (this.handlers.has(name)) {
 			const handlers = this.handlers.get(name);

@@ -1,6 +1,6 @@
 import Drawable from "./Drawable.js";
 import Point from "./Point.js";
-import { Color } from "./types.js";
+import { Color } from "../types.js";
 
 class Curve extends Drawable {
 	points = new Set<Point>();
