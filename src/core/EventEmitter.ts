@@ -1,11 +1,11 @@
 class EventEmitter<T extends Event> {
 	handlers = new Map<string, Set<Function>>();
 
-	addEventListener(name: string, handler: (e: Event) => any) {
+	addEventListener(name: string, handler: (e: T) => any) {
 		return this.on(name, handler);
 	}
 
-	on(name: string, handler: (e: Event) => any) {
+	on(name: string, handler: (e: T) => any) {
 		if (!this.handlers.has(name)) {
 			this.handlers.set(name, new Set());
 		}
@@ -13,7 +13,7 @@ class EventEmitter<T extends Event> {
 		this.handlers.get(name)?.add(handler);
 	}
 
-	off(name: string, handler: (e: Event) => any) {
+	off(name: string, handler: (e: T) => any) {
 		if (!this.handlers.has(name)) {
 			return;
 		}

@@ -40,8 +40,8 @@ class CurveMode extends Mode {
 	mousemoveHandler = () => {
 		if (this.app.mouse.left) {
 			const point = new Point(
-				this.app.mouse.x - this.app.container.x,
-				this.app.mouse.y - this.app.container.y
+				this.app.mouse.x - this.app.container.offsetX,
+				this.app.mouse.y - this.app.container.offsetY
 			);
 			this.payload.add(point);
 		}

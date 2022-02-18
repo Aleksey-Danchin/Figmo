@@ -104,6 +104,11 @@
 	background-size: 16px;
 }
 
+.icon-select {
+	background-image: url("sets/selection.png");
+	background-size: 16px;
+}
+
 .icon-big {
 	background-size: 24px;
 	width: 24px;

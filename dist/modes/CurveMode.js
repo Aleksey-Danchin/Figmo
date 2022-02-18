@@ -47,7 +47,7 @@ var CurveMode = /** @class */ (function (_super) {
         };
         _this.mousemoveHandler = function () {
             if (_this.app.mouse.left) {
-                var point = new Point(_this.app.mouse.x - _this.app.container.x, _this.app.mouse.y - _this.app.container.y);
+                var point = new Point(_this.app.mouse.x - _this.app.container.offsetX, _this.app.mouse.y - _this.app.container.offsetY);
                 _this.payload.add(point);
             }
         };

@@ -32,7 +32,7 @@ var Render = /** @class */ (function (_super) {
             timestamp: timestamp,
             ptimestamp: this.timestamp,
             fps: 1000 / (timestamp - this.ptimestamp),
-            secondPart: (timestamp - this.ptimestamp) / 1000
+            secondPart: (timestamp - this.ptimestamp) / 1000,
         });
         this.dispatch(this);
     };

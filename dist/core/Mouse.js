@@ -71,7 +71,7 @@ var Mouse = /** @class */ (function (_super) {
             px: this.x,
             py: this.y,
             pleft: this.left,
-            punder: this.under
+            punder: this.under,
         });
     };
     return Mouse;

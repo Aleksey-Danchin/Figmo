@@ -74,7 +74,7 @@ var Curve = /** @class */ (function (_super) {
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
         finally {
             try {
-                if (points_1_1 && !points_1_1.done && (_a = points_1["return"])) _a.call(points_1);
+                if (points_1_1 && !points_1_1.done && (_a = points_1.return)) _a.call(points_1);
             }
             finally { if (e_1) throw e_1.error; }
         }
@@ -98,7 +98,7 @@ var Curve = /** @class */ (function (_super) {
         catch (e_2_1) { e_2 = { error: e_2_1 }; }
         finally {
             try {
-                if (points_2_1 && !points_2_1.done && (_a = points_2["return"])) _a.call(points_2);
+                if (points_2_1 && !points_2_1.done && (_a = points_2.return)) _a.call(points_2);
             }
             finally { if (e_2) throw e_2.error; }
         }
@@ -107,7 +107,7 @@ var Curve = /** @class */ (function (_super) {
         this.width = maxX - minX;
         this.height = maxY - minY;
     };
-    Curve.prototype.draw = function (context) {
+    Curve.prototype.draw = function (context, canvas) {
         if (!this.visible || !this.points.size) {
             return false;
         }
@@ -120,47 +120,7 @@ var Curve = /** @class */ (function (_super) {
             context.lineTo(points[i].x, points[i].y);
         }
         context.stroke();
-        if (this.showBorder) {
-            context.beginPath();
-            context.moveTo(this.x, this.y);
-            context.lineTo(this.x + this.width, this.y);
-            context.lineTo(this.x + this.width, this.y + this.height);
-            context.lineTo(this.x, this.y + this.height);
-            context.closePath();
-            context.lineWidth = 1;
-            context.strokeStyle = "blue";
-            context.setLineDash([3, 3]);
-            context.stroke();
-            context.setLineDash([]);
-            context.beginPath();
-            context.arc(this.x, this.y, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-            context.beginPath();
-            context.arc(this.x + this.width, this.y, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-            context.beginPath();
-            context.arc(this.x + this.width, this.y + this.height, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-            context.beginPath();
-            context.arc(this.x, this.y + this.height, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-        }
+        _super.prototype.draw.call(this, context, canvas);
         return true;
     };
     return Curve;

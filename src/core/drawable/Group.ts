@@ -27,15 +27,39 @@ class Group extends Drawable {
 			item.draw(context, canvas);
 		}
 
+		super.draw(context, canvas);
+
 		context.restore();
 	}
 
+	*[Symbol.iterator](): Generator<Drawable> {
+		for (const item of this.items) {
+			if (item instanceof Group) {
+				yield* item[Symbol.iterator]();
+			} else {
+				yield item;
+			}
+		}
+	}
+
 	get x() {
-		return Math.min(0, ...Array.from(this.items.values()).map((x) => x.x));
+		const xs = Array.from(this.items.values()).map((x) => x.x);
+
+		if (xs.length) {
+			return Math.min(...xs);
+		}
+
+		return 0;
 	}
 
 	get y() {
-		return Math.min(0, ...Array.from(this.items.values()).map((x) => x.y));
+		const ys = Array.from(this.items.values()).map((x) => x.y);
+
+		if (ys.length) {
+			return Math.min(...ys);
+		}
+
+		return 0;
 	}
 
 	get width() {
