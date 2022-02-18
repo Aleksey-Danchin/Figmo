@@ -27,11 +27,6 @@ class Mouse extends EventEmitter<MouseEvent> {
 
 		this.element = element;
 
-		this.mousemoveHandler = this.mousemoveHandler.bind(this);
-		this.mouseleaveHandler = this.mouseleaveHandler.bind(this);
-		this.mousedownHandler = this.mousedownHandler.bind(this);
-		this.mouseupHandler = this.mouseupHandler.bind(this);
-
 		this.element.addEventListener("mousemove", this.mousemoveHandler);
 		this.element.addEventListener("mouseleave", this.mouseleaveHandler);
 		this.element.addEventListener("mouseenter", this.mousemoveHandler);
@@ -39,7 +34,7 @@ class Mouse extends EventEmitter<MouseEvent> {
 		this.element.addEventListener("mouseup", this.mouseupHandler);
 	}
 
-	mousemoveHandler(e: MouseEvent) {
+	mousemoveHandler = (e: MouseEvent) => {
 		const { clientX, clientY } = e;
 		const { left, top } = this.element.getBoundingClientRect();
 
@@ -49,29 +44,29 @@ class Mouse extends EventEmitter<MouseEvent> {
 		Object.assign(this, { x, y, px: this.x, py: this.y, under: true });
 
 		this.emit("mousemove", e);
-	}
+	};
 
-	mouseleaveHandler(e: MouseEvent) {
+	mouseleaveHandler = (e: MouseEvent) => {
 		this.under = false;
 
 		this.emit("mouseleave", e);
-	}
+	};
 
-	mousedownHandler(e: MouseEvent) {
+	mousedownHandler = (e: MouseEvent) => {
 		if (e.button === Button.left) {
 			this.left = true;
 		}
 
 		this.emit("mousedown", e);
-	}
+	};
 
-	mouseupHandler(e: MouseEvent) {
+	mouseupHandler = (e: MouseEvent) => {
 		if (e.button === Button.left) {
 			this.left = false;
 		}
 
 		this.emit("mouseup", e);
-	}
+	};
 
 	tick() {
 		Object.assign(this, {

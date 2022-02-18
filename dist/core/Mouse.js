@@ -32,11 +32,31 @@ var Mouse = /** @class */ (function (_super) {
         _this.dy = 0;
         _this.left = false;
         _this.pleft = false;
+        _this.mousemoveHandler = function (e) {
+            var clientX = e.clientX, clientY = e.clientY;
+            var _a = _this.element.getBoundingClientRect(), left = _a.left, top = _a.top;
+            var x = clientX - left;
+            var y = clientY - top;
+            Object.assign(_this, { x: x, y: y, px: _this.x, py: _this.y, under: true });
+            _this.emit("mousemove", e);
+        };
+        _this.mouseleaveHandler = function (e) {
+            _this.under = false;
+            _this.emit("mouseleave", e);
+        };
+        _this.mousedownHandler = function (e) {
+            if (e.button === Button.left) {
+                _this.left = true;
+            }
+            _this.emit("mousedown", e);
+        };
+        _this.mouseupHandler = function (e) {
+            if (e.button === Button.left) {
+                _this.left = false;
+            }
+            _this.emit("mouseup", e);
+        };
         _this.element = element;
-        _this.mousemoveHandler = _this.mousemoveHandler.bind(_this);
-        _this.mouseleaveHandler = _this.mouseleaveHandler.bind(_this);
-        _this.mousedownHandler = _this.mousedownHandler.bind(_this);
-        _this.mouseupHandler = _this.mouseupHandler.bind(_this);
         _this.element.addEventListener("mousemove", _this.mousemoveHandler);
         _this.element.addEventListener("mouseleave", _this.mouseleaveHandler);
         _this.element.addEventListener("mouseenter", _this.mousemoveHandler);
@@ -44,30 +64,6 @@ var Mouse = /** @class */ (function (_super) {
         _this.element.addEventListener("mouseup", _this.mouseupHandler);
         return _this;
     }
-    Mouse.prototype.mousemoveHandler = function (e) {
-        var clientX = e.clientX, clientY = e.clientY;
-        var _a = this.element.getBoundingClientRect(), left = _a.left, top = _a.top;
-        var x = clientX - left;
-        var y = clientY - top;
-        Object.assign(this, { x: x, y: y, px: this.x, py: this.y, under: true });
-        this.emit("mousemove", e);
-    };
-    Mouse.prototype.mouseleaveHandler = function (e) {
-        this.under = false;
-        this.emit("mouseleave", e);
-    };
-    Mouse.prototype.mousedownHandler = function (e) {
-        if (e.button === Button.left) {
-            this.left = true;
-        }
-        this.emit("mousedown", e);
-    };
-    Mouse.prototype.mouseupHandler = function (e) {
-        if (e.button === Button.left) {
-            this.left = false;
-        }
-        this.emit("mouseup", e);
-    };
     Mouse.prototype.tick = function () {
         Object.assign(this, {
             dx: this.x - this.px,
@@ -75,7 +71,7 @@ var Mouse = /** @class */ (function (_super) {
             px: this.x,
             py: this.y,
             pleft: this.left,
-            punder: this.under,
+            punder: this.under
         });
     };
     return Mouse;

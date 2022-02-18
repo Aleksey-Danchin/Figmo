@@ -7,7 +7,6 @@ Application.create({
 	background: "#ededed",
 	modes: [
 		CurveMode.create({
-			autoStart: true,
 			element: document.querySelector(
 				'[data-action="curve"]'
 			) as HTMLElement,

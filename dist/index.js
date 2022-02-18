@@ -6,11 +6,10 @@ Application.create({
     background: "#ededed",
     modes: [
         CurveMode.create({
-            autoStart: true,
-            element: document.querySelector('[data-action="curve"]'),
+            element: document.querySelector('[data-action="curve"]')
         }),
         MoveMode.create({
-            element: document.querySelector('[data-action="move"]'),
+            element: document.querySelector('[data-action="move"]')
         }),
-    ],
+    ]
 });

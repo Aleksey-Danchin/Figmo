@@ -11,9 +11,7 @@ class MoveMode extends Mode {
 		}
 
 		this.app.mode = this;
-
 		this.element.classList.add("action--active");
-
 		this.app.mouse.on("mousemove", this.mousemoveHandler);
 	};
 
@@ -24,8 +22,8 @@ class MoveMode extends Mode {
 
 	mousemoveHandler = () => {
 		if (this.app.mouse.left) {
-			this.app.container.x += this.app.mouse.dx;
-			this.app.container.y += this.app.mouse.dy;
+			this.app.container.offsetX += this.app.mouse.dx;
+			this.app.container.offsetY += this.app.mouse.dy;
 		}
 	};
 

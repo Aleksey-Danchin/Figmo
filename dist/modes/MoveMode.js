@@ -35,8 +35,8 @@ var MoveMode = /** @class */ (function (_super) {
         };
         _this.mousemoveHandler = function () {
             if (_this.app.mouse.left) {
-                _this.app.container.x += _this.app.mouse.dx;
-                _this.app.container.y += _this.app.mouse.dy;
+                _this.app.container.offsetX += _this.app.mouse.dx;
+                _this.app.container.offsetY += _this.app.mouse.dy;
             }
         };
         return _this;

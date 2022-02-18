@@ -28,9 +28,9 @@ var EventEmitter = /** @class */ (function () {
             return;
         }
         var handlers = this.handlers.get(name);
-        handlers === null || handlers === void 0 ? void 0 : handlers.delete(handler);
+        handlers === null || handlers === void 0 ? void 0 : handlers["delete"](handler);
         if ((handlers === null || handlers === void 0 ? void 0 : handlers.size) === 0) {
-            this.handlers.delete(name);
+            this.handlers["delete"](name);
         }
     };
     EventEmitter.prototype.emit = function (name, event) {
@@ -47,7 +47,7 @@ var EventEmitter = /** @class */ (function () {
                 catch (e_1_1) { e_1 = { error: e_1_1 }; }
                 finally {
                     try {
-                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
                     }
                     finally { if (e_1) throw e_1.error; }
                 }

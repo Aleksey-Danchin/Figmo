@@ -74,7 +74,7 @@ var Curve = /** @class */ (function (_super) {
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
         finally {
             try {
-                if (points_1_1 && !points_1_1.done && (_a = points_1.return)) _a.call(points_1);
+                if (points_1_1 && !points_1_1.done && (_a = points_1["return"])) _a.call(points_1);
             }
             finally { if (e_1) throw e_1.error; }
         }
@@ -98,7 +98,7 @@ var Curve = /** @class */ (function (_super) {
         catch (e_2_1) { e_2 = { error: e_2_1 }; }
         finally {
             try {
-                if (points_2_1 && !points_2_1.done && (_a = points_2.return)) _a.call(points_2);
+                if (points_2_1 && !points_2_1.done && (_a = points_2["return"])) _a.call(points_2);
             }
             finally { if (e_2) throw e_2.error; }
         }

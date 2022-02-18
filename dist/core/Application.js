@@ -37,7 +37,7 @@ var Application = /** @class */ (function () {
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
             finally {
                 try {
-                    if (_e && !_e.done && (_a = _d.return)) _a.call(_d);
+                    if (_e && !_e.done && (_a = _d["return"])) _a.call(_d);
                 }
                 finally { if (e_1) throw e_1.error; }
             }
@@ -50,7 +50,7 @@ var Application = /** @class */ (function () {
             catch (e_2_1) { e_2 = { error: e_2_1 }; }
             finally {
                 try {
-                    if (_g && !_g.done && (_b = _f.return)) _b.call(_f);
+                    if (_g && !_g.done && (_b = _f["return"])) _b.call(_f);
                 }
                 finally { if (e_2) throw e_2.error; }
             }
@@ -65,7 +65,7 @@ var Application = /** @class */ (function () {
             catch (e_3_1) { e_3 = { error: e_3_1 }; }
             finally {
                 try {
-                    if (_j && !_j.done && (_c = _h.return)) _c.call(_h);
+                    if (_j && !_j.done && (_c = _h["return"])) _c.call(_h);
                 }
                 finally { if (e_3) throw e_3.error; }
             }
