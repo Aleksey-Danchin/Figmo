@@ -22,6 +22,7 @@ var MoveMode = /** @class */ (function (_super) {
             if (_this.running) {
                 return;
             }
+            _this.running = true;
             if (_this.app.mode) {
                 _this.app.mode.stop();
             }
@@ -32,6 +33,7 @@ var MoveMode = /** @class */ (function (_super) {
         _this.stop = function () {
             _this.element.classList.remove("action--active");
             _this.app.mouse.off("mousemove", _this.mousemoveHandler);
+            _this.running = false;
         };
         _this.mousemoveHandler = function () {
             if (_this.app.mouse.left) {

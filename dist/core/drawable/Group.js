@@ -128,6 +128,9 @@ var Group = /** @class */ (function (_super) {
     };
     Group.prototype.draw = function (context, canvas) {
         var e_3, _a;
+        if (this.isEmpty) {
+            return;
+        }
         context.save();
         context.translate(this.offsetX, this.offsetY);
         try {
@@ -186,6 +189,46 @@ var Group = /** @class */ (function (_super) {
             }
         });
     };
+    Object.defineProperty(Group.prototype, "isEmpty", {
+        get: function () {
+            var e_5, _a, e_6, _b;
+            var groups = new Set();
+            try {
+                for (var _c = __values(this.items), _d = _c.next(); !_d.done; _d = _c.next()) {
+                    var item = _d.value;
+                    if (!(item instanceof Group)) {
+                        return false;
+                    }
+                    groups.add(item);
+                }
+            }
+            catch (e_5_1) { e_5 = { error: e_5_1 }; }
+            finally {
+                try {
+                    if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+                }
+                finally { if (e_5) throw e_5.error; }
+            }
+            try {
+                for (var groups_1 = __values(groups), groups_1_1 = groups_1.next(); !groups_1_1.done; groups_1_1 = groups_1.next()) {
+                    var group = groups_1_1.value;
+                    if (!group.isEmpty) {
+                        return false;
+                    }
+                }
+            }
+            catch (e_6_1) { e_6 = { error: e_6_1 }; }
+            finally {
+                try {
+                    if (groups_1_1 && !groups_1_1.done && (_b = groups_1.return)) _b.call(groups_1);
+                }
+                finally { if (e_6) throw e_6.error; }
+            }
+            return true;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Group.prototype, "x", {
         get: function () {
             var xs = Array.from(this.items.values()).map(function (x) { return x.x; });

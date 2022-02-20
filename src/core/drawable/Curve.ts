@@ -59,6 +59,15 @@ class Curve extends Drawable {
 
 		return true;
 	}
+
+	move(dx: number, dy: number) {
+		for (const point of this.points) {
+			point.x += dx;
+			point.y += dy;
+		}
+
+		this.update();
+	}
 }
 
 export default Curve;

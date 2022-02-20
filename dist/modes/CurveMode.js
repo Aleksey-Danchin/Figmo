@@ -25,6 +25,7 @@ var CurveMode = /** @class */ (function (_super) {
             if (_this.running) {
                 return;
             }
+            _this.running = true;
             if (_this.app.mode) {
                 _this.app.mode.stop();
             }
@@ -41,6 +42,7 @@ var CurveMode = /** @class */ (function (_super) {
             _this.app.mouse.off("mousemove", _this.mousemoveHandler);
             _this.app.mouse.off("mousedown", _this.mousedownHandler);
             _this.app.mouse.off("mouseup", _this.mouseupHandler);
+            _this.running = false;
             if (_this.payload.points.size < 2) {
                 _this.app.container.remove(_this.payload);
             }

@@ -65,6 +65,10 @@ var Drawable = /** @class */ (function (_super) {
             context.stroke();
         }
     };
+    Drawable.prototype.move = function (dx, dy) {
+        this.x += dx;
+        this.y += dy;
+    };
     return Drawable;
 }(Rectangle));
 export default Drawable;

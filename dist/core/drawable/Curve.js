@@ -123,6 +123,24 @@ var Curve = /** @class */ (function (_super) {
         _super.prototype.draw.call(this, context, canvas);
         return true;
     };
+    Curve.prototype.move = function (dx, dy) {
+        var e_3, _a;
+        try {
+            for (var _b = __values(this.points), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var point = _c.value;
+                point.x += dx;
+                point.y += dy;
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        this.update();
+    };
     return Curve;
 }(Drawable));
 export default Curve;

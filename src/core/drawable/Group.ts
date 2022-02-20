@@ -18,6 +18,10 @@ class Group extends Drawable {
 	}
 
 	draw(context: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
+		if (this.isEmpty) {
+			return;
+		}
+
 		context.save();
 
 		context.translate(this.offsetX, this.offsetY);
@@ -40,6 +44,26 @@ class Group extends Drawable {
 				yield item;
 			}
 		}
+	}
+
+	get isEmpty() {
+		const groups = new Set<Group>();
+
+		for (const item of this.items) {
+			if (!(item instanceof Group)) {
+				return false;
+			}
+
+			groups.add(item);
+		}
+
+		for (const group of groups) {
+			if (!group.isEmpty) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	get x() {

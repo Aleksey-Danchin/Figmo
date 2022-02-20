@@ -10,6 +10,8 @@ class CurveMode extends Mode {
 			return;
 		}
 
+		this.running = true;
+
 		if (this.app.mode) {
 			this.app.mode.stop();
 		}
@@ -31,6 +33,8 @@ class CurveMode extends Mode {
 		this.app.mouse.off("mousemove", this.mousemoveHandler);
 		this.app.mouse.off("mousedown", this.mousedownHandler);
 		this.app.mouse.off("mouseup", this.mouseupHandler);
+
+		this.running = false;
 
 		if (this.payload.points.size < 2) {
 			this.app.container.remove(this.payload);

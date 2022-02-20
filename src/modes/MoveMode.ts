@@ -6,6 +6,8 @@ class MoveMode extends Mode {
 			return;
 		}
 
+		this.running = true;
+
 		if (this.app.mode) {
 			this.app.mode.stop();
 		}
@@ -18,6 +20,7 @@ class MoveMode extends Mode {
 	stop = () => {
 		this.element.classList.remove("action--active");
 		this.app.mouse.off("mousemove", this.mousemoveHandler);
+		this.running = false;
 	};
 
 	mousemoveHandler = () => {

@@ -57,6 +57,11 @@ class Drawable extends Rectangle {
 			context.stroke();
 		}
 	}
+
+	move(dx: number, dy: number) {
+		this.x += dx;
+		this.y += dy;
+	}
 }
 
 export default Drawable;
