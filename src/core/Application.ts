@@ -1,11 +1,10 @@
-import Canvas from "./Canvas.js";
-import Group from "./drawable/Group.js";
-import Mode from "./Mode.js";
-import Mouse from "./Mouse.js";
+import Canvas from "./basic/Canvas.js";
+import Mode from "./modes/Mode.js";
+import Mouse from "./basic/Mouse.js";
 import Render from "./common/Render.js";
 import { ApplicationMode, Color } from "./types.js";
 import Selector from "./drawable/Selector.js";
-import Container from "./Container.js";
+import Container from "./basic/Container.js";
 
 type ApplicationParams = {
 	root: HTMLElement;

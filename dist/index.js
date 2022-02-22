@@ -2,7 +2,7 @@ import Application from "./core/Application.js";
 import CurveMode from "./core/modes/CurveMode.js";
 import MoveMode from "./core/modes/MoveMode.js";
 import SelectMode from "./core/modes/SelectMode.js";
-var app = Application.create({
+Application.create({
     root: document.querySelector(".content-center"),
     background: "#ededed",
     modes: [

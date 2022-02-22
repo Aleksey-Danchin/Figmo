@@ -1,6 +1,4 @@
-import Frame from "../drawable/Frame.js";
-import Group from "../drawable/Group.js";
-import Mode, { ModeParams } from "../Mode.js";
+import Mode, { ModeParams } from "./Mode.js";
 import { isRectanglesIntersection } from "../common/util.js";
 
 class SelectMode extends Mode {

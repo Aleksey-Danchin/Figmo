@@ -3,7 +3,7 @@ import CurveMode from "./core/modes/CurveMode.js";
 import MoveMode from "./core/modes/MoveMode.js";
 import SelectMode from "./core/modes/SelectMode.js";
 
-const app = Application.create({
+Application.create({
 	root: document.querySelector(".content-center") as HTMLDivElement,
 	background: "#ededed",
 	modes: [

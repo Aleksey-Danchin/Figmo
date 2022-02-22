@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import Curve from "../drawable/Curve.js";
 import Point from "../drawable/Point.js";
-import Mode from "../Mode.js";
+import Mode from "./Mode.js";
 var CurveMode = /** @class */ (function (_super) {
     __extends(CurveMode, _super);
     function CurveMode() {

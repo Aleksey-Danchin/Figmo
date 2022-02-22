@@ -1,4 +1,4 @@
-import Mode, { ModeParams } from "../Mode.js";
+import Mode, { ModeParams } from "./Mode.js";
 
 class MoveMode extends Mode {
 	start = () => {

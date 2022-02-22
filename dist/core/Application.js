@@ -9,11 +9,11 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-import Canvas from "./Canvas.js";
-import Mouse from "./Mouse.js";
+import Canvas from "./basic/Canvas.js";
+import Mouse from "./basic/Mouse.js";
 import Render from "./common/Render.js";
 import Selector from "./drawable/Selector.js";
-import Container from "./Container.js";
+import Container from "./basic/Container.js";
 var Application = /** @class */ (function () {
     function Application(data) {
         var e_1, _a, e_2, _b, e_3, _c;
