@@ -40,17 +40,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -76,14 +65,36 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
 import Drawable from "./Drawable.js";
 var Group = /** @class */ (function (_super) {
     __extends(Group, _super);
-    function Group() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function Group(data) {
+        if (data === void 0) { data = {}; }
+        var _this = _super.call(this) || this;
         _this.items = new Set();
         _this.offsetX = 0;
         _this.offsetY = 0;
+        if (data.hasOwnProperty("offsetX")) {
+            _this.offsetX = data.offsetX;
+        }
+        if (data.hasOwnProperty("offsetY")) {
+            _this.offsetY = data.offsetY;
+        }
+        if (data.hasOwnProperty("items")) {
+            var items = data.items;
+            _this.add.apply(_this, __spreadArray([], __read(items), false));
+        }
         return _this;
     }
     Group.prototype.add = function () {

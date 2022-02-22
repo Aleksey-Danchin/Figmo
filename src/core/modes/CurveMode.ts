@@ -1,6 +1,6 @@
-import Curve from "../core/drawable/Curve.js";
-import Point from "../core/drawable/Point.js";
-import Mode, { ModeParams } from "../core/Mode.js";
+import Curve from "../drawable/Curve.js";
+import Point from "../drawable/Point.js";
+import Mode, { ModeParams } from "../Mode.js";
 
 class CurveMode extends Mode {
 	payload = new Curve();

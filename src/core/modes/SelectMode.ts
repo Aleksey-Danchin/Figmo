@@ -1,7 +1,7 @@
-import Frame from "../core/drawable/Frame.js";
-import Group from "../core/drawable/Group.js";
-import Mode, { ModeParams } from "../core/Mode.js";
-import { isRectanglesIntersection } from "../core/common/util.js";
+import Frame from "../drawable/Frame.js";
+import Group from "../drawable/Group.js";
+import Mode, { ModeParams } from "../Mode.js";
+import { isRectanglesIntersection } from "../common/util.js";
 
 class SelectMode extends Mode {
 	sx = 0;
@@ -102,7 +102,7 @@ class SelectMode extends Mode {
 
 			this.app.selector.clear();
 
-			for (const drawable of this.app.container) {
+			for (const drawable of this.app.container.group) {
 				if (
 					isRectanglesIntersection(this.app.selector.frame, drawable)
 				) {

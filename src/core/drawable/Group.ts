@@ -1,9 +1,32 @@
 import Drawable from "./Drawable.js";
 
+type GroupConstructor = {
+	offsetX?: number;
+	offsetY?: number;
+	items?: Drawable[];
+};
+
 class Group extends Drawable {
 	items = new Set<Drawable>();
 	offsetX = 0;
 	offsetY = 0;
+
+	constructor(data: GroupConstructor = {}) {
+		super();
+
+		if (data.hasOwnProperty("offsetX")) {
+			this.offsetX = data.offsetX as number;
+		}
+
+		if (data.hasOwnProperty("offsetY")) {
+			this.offsetY = data.offsetY as number;
+		}
+
+		if (data.hasOwnProperty("items")) {
+			const items = data.items as Drawable[];
+			this.add(...items);
+		}
+	}
 
 	add(...items: Drawable[]) {
 		for (const item of items) {

@@ -24,8 +24,8 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-import Mode from "../core/Mode.js";
-import { isRectanglesIntersection } from "../core/common/util.js";
+import Mode from "../Mode.js";
+import { isRectanglesIntersection } from "../common/util.js";
 var SelectMode = /** @class */ (function (_super) {
     __extends(SelectMode, _super);
     function SelectMode() {

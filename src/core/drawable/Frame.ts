@@ -2,6 +2,11 @@ import { Color } from "../types";
 import Drawable from "./Drawable.js";
 
 export type FrameConstructor = {
+	x?: number;
+	y?: number;
+	width?: number;
+	height?: number;
+
 	background?: Color;
 	lineWidth?: number;
 	color?: Color;

@@ -1,4 +1,4 @@
-class Observer<Subscriber extends Function> {
+class Observer<Subscriber extends Function = () => {}> {
 	subscribers: Subscriber[] = [];
 
 	subscribe(subscriber: Subscriber) {

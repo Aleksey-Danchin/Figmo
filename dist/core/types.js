@@ -5,3 +5,8 @@ export var ApplicationMode;
     ApplicationMode[ApplicationMode["Curve"] = 2] = "Curve";
     ApplicationMode[ApplicationMode["Selecting"] = 3] = "Selecting";
 })(ApplicationMode || (ApplicationMode = {}));
+export var DrawableType;
+(function (DrawableType) {
+    DrawableType["Curve"] = "curve";
+    DrawableType["Frame"] = "frame";
+})(DrawableType || (DrawableType = {}));

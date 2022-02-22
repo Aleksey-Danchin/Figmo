@@ -5,6 +5,7 @@ import Mouse from "./Mouse.js";
 import Render from "./common/Render.js";
 import { ApplicationMode, Color } from "./types.js";
 import Selector from "./drawable/Selector.js";
+import Container from "./Container.js";
 
 type ApplicationParams = {
 	root: HTMLElement;
@@ -18,7 +19,7 @@ class Application {
 	canvas!: Canvas;
 	mouse!: Mouse;
 	render!: Render;
-	container = new Group();
+	container = new Container();
 	selector = new Selector();
 
 	modes = [] as Mode[];
@@ -59,7 +60,7 @@ class Application {
 			this.canvas.clear();
 
 			this.canvas.draw((context, canvas) => {
-				this.container.draw(context, canvas);
+				this.container.group.draw(context, canvas);
 				this.selector.draw(context, canvas);
 			});
 		});

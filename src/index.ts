@@ -1,7 +1,7 @@
 import Application from "./core/Application.js";
-import CurveMode from "./modes/CurveMode.js";
-import MoveMode from "./modes/MoveMode.js";
-import SelectMode from "./modes/SelectMode.js";
+import CurveMode from "./core/modes/CurveMode.js";
+import MoveMode from "./core/modes/MoveMode.js";
+import SelectMode from "./core/modes/SelectMode.js";
 
 const app = Application.create({
 	root: document.querySelector(".content-center") as HTMLDivElement,
