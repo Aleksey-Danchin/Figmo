@@ -1,7 +1,7 @@
 import Frame from "../core/drawable/Frame.js";
 import Group from "../core/drawable/Group.js";
 import Mode, { ModeParams } from "../core/Mode.js";
-import { isRectanglesIntersection } from "../core/util.js";
+import { isRectanglesIntersection } from "../core/common/util.js";
 
 class SelectMode extends Mode {
 	sx = 0;
@@ -11,9 +11,6 @@ class SelectMode extends Mode {
 	offsetY = 0;
 
 	moving = false;
-
-	group = new Group();
-	frame = new Frame({ background: "rgba(0, 0, 255, 0.2)" });
 
 	start = () => {
 		if (this.running) {
@@ -34,22 +31,18 @@ class SelectMode extends Mode {
 		this.app.mouse.on("mousedown", this.mousedownHandler);
 		this.app.mouse.on("mousemove", this.mousemoveHandler);
 
-		this.app.container.remove(this.group, this.frame);
+		this.app.selector.frame.visible = false;
+		this.app.selector.clear();
 
-		this.group = new Group();
-		this.group.showBorder = true;
-		this.frame = new Frame({
-			background: "rgba(0, 0, 255, 0.05)",
-			color: "rgba(0, 0, 255, 0.5)",
-			lineWidth: 2,
-		});
-
-		this.app.container.add(this.group, this.frame);
+		this.app.selector.offsetX = this.app.container.offsetX;
+		this.app.selector.offsetY = this.app.container.offsetY;
 	};
 
 	stop = () => {
 		this.element.classList.remove("action--active");
-		this.app.container.remove(this.group, this.frame);
+
+		this.app.selector.frame.visible = false;
+		this.app.selector.clear();
 		this.running = false;
 
 		this.app.mouse.off("mouseup", this.mouseupHandler);
@@ -58,7 +51,7 @@ class SelectMode extends Mode {
 	};
 
 	mouseupHandler = () => {
-		this.app.container.remove(this.frame);
+		this.app.selector.frame.visible = false;
 		this.moving = false;
 	};
 
@@ -67,26 +60,18 @@ class SelectMode extends Mode {
 		this.sy = this.app.mouse.y - this.app.container.offsetY;
 
 		if (
-			this.group.pointIsUnder({
+			this.app.selector.pointIsUnder({
 				x: this.app.mouse.x - this.app.container.offsetX,
 				y: this.app.mouse.y - this.app.container.offsetY,
 			})
 		) {
-			this.offsetX = this.app.mouse.x - this.group.clientX;
-			this.offsetY = this.app.mouse.y - this.group.clientY;
+			this.offsetX = this.app.mouse.x - this.app.selector.clientX;
+			this.offsetY = this.app.mouse.y - this.app.selector.clientY;
 			this.moving = true;
 		} else {
-			this.app.container.remove(this.group, this.frame);
-
-			this.group = new Group();
-			this.group.showBorder = true;
-			this.frame = new Frame({
-				background: "rgba(0, 0, 255, 0.05)",
-				color: "rgba(0, 0, 255, 0.5)",
-				lineWidth: 2,
-			});
-
-			this.app.container.add(this.group, this.frame);
+			this.app.selector.frame.visible = true;
+			this.app.selector.frame.width = 0;
+			this.app.selector.frame.height = 0;
 		}
 	};
 
@@ -96,7 +81,7 @@ class SelectMode extends Mode {
 		}
 
 		if (this.moving) {
-			for (const drawable of this.group) {
+			for (const drawable of this.app.selector) {
 				drawable.move(this.app.mouse.dx, this.app.mouse.dy);
 			}
 		} else {
@@ -108,17 +93,20 @@ class SelectMode extends Mode {
 			const width = Math.abs(x - this.sx);
 			const height = Math.abs(y - this.sy);
 
-			Object.assign(this.frame, { x: left, y: top, width, height });
+			Object.assign(this.app.selector.frame, {
+				x: left,
+				y: top,
+				width,
+				height,
+			});
 
-			this.group.items.clear();
+			this.app.selector.clear();
 
 			for (const drawable of this.app.container) {
-				if (this.group.items.has(drawable) || this.frame === drawable) {
-					continue;
-				}
-
-				if (isRectanglesIntersection(this.frame, drawable)) {
-					this.group.add(drawable);
+				if (
+					isRectanglesIntersection(this.app.selector.frame, drawable)
+				) {
+					this.app.selector.add(drawable);
 				}
 			}
 		}

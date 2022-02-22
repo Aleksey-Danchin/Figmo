@@ -24,10 +24,8 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-import Frame from "../core/drawable/Frame.js";
-import Group from "../core/drawable/Group.js";
 import Mode from "../core/Mode.js";
-import { isRectanglesIntersection } from "../core/util.js";
+import { isRectanglesIntersection } from "../core/common/util.js";
 var SelectMode = /** @class */ (function (_super) {
     __extends(SelectMode, _super);
     function SelectMode() {
@@ -37,8 +35,6 @@ var SelectMode = /** @class */ (function (_super) {
         _this.offsetX = 0;
         _this.offsetY = 0;
         _this.moving = false;
-        _this.group = new Group();
-        _this.frame = new Frame({ background: "rgba(0, 0, 255, 0.2)" });
         _this.start = function () {
             if (_this.running) {
                 return;
@@ -52,49 +48,39 @@ var SelectMode = /** @class */ (function (_super) {
             _this.app.mouse.on("mouseup", _this.mouseupHandler);
             _this.app.mouse.on("mousedown", _this.mousedownHandler);
             _this.app.mouse.on("mousemove", _this.mousemoveHandler);
-            _this.app.container.remove(_this.group, _this.frame);
-            _this.group = new Group();
-            _this.group.showBorder = true;
-            _this.frame = new Frame({
-                background: "rgba(0, 0, 255, 0.05)",
-                color: "rgba(0, 0, 255, 0.5)",
-                lineWidth: 2,
-            });
-            _this.app.container.add(_this.group, _this.frame);
+            _this.app.selector.frame.visible = false;
+            _this.app.selector.clear();
+            _this.app.selector.offsetX = _this.app.container.offsetX;
+            _this.app.selector.offsetY = _this.app.container.offsetY;
         };
         _this.stop = function () {
             _this.element.classList.remove("action--active");
-            _this.app.container.remove(_this.group, _this.frame);
+            _this.app.selector.frame.visible = false;
+            _this.app.selector.clear();
             _this.running = false;
             _this.app.mouse.off("mouseup", _this.mouseupHandler);
             _this.app.mouse.off("mousedown", _this.mousedownHandler);
             _this.app.mouse.off("mousemove", _this.mousemoveHandler);
         };
         _this.mouseupHandler = function () {
-            _this.app.container.remove(_this.frame);
+            _this.app.selector.frame.visible = false;
             _this.moving = false;
         };
         _this.mousedownHandler = function () {
             _this.sx = _this.app.mouse.x - _this.app.container.offsetX;
             _this.sy = _this.app.mouse.y - _this.app.container.offsetY;
-            if (_this.group.pointIsUnder({
+            if (_this.app.selector.pointIsUnder({
                 x: _this.app.mouse.x - _this.app.container.offsetX,
                 y: _this.app.mouse.y - _this.app.container.offsetY,
             })) {
-                _this.offsetX = _this.app.mouse.x - _this.group.clientX;
-                _this.offsetY = _this.app.mouse.y - _this.group.clientY;
+                _this.offsetX = _this.app.mouse.x - _this.app.selector.clientX;
+                _this.offsetY = _this.app.mouse.y - _this.app.selector.clientY;
                 _this.moving = true;
             }
             else {
-                _this.app.container.remove(_this.group, _this.frame);
-                _this.group = new Group();
-                _this.group.showBorder = true;
-                _this.frame = new Frame({
-                    background: "rgba(0, 0, 255, 0.05)",
-                    color: "rgba(0, 0, 255, 0.5)",
-                    lineWidth: 2,
-                });
-                _this.app.container.add(_this.group, _this.frame);
+                _this.app.selector.frame.visible = true;
+                _this.app.selector.frame.width = 0;
+                _this.app.selector.frame.height = 0;
             }
         };
         _this.mousemoveHandler = function () {
@@ -104,7 +90,7 @@ var SelectMode = /** @class */ (function (_super) {
             }
             if (_this.moving) {
                 try {
-                    for (var _c = __values(_this.group), _d = _c.next(); !_d.done; _d = _c.next()) {
+                    for (var _c = __values(_this.app.selector), _d = _c.next(); !_d.done; _d = _c.next()) {
                         var drawable = _d.value;
                         drawable.move(_this.app.mouse.dx, _this.app.mouse.dy);
                     }
@@ -124,16 +110,18 @@ var SelectMode = /** @class */ (function (_super) {
                 var top_1 = Math.min(y, _this.sy);
                 var width = Math.abs(x - _this.sx);
                 var height = Math.abs(y - _this.sy);
-                Object.assign(_this.frame, { x: left, y: top_1, width: width, height: height });
-                _this.group.items.clear();
+                Object.assign(_this.app.selector.frame, {
+                    x: left,
+                    y: top_1,
+                    width: width,
+                    height: height,
+                });
+                _this.app.selector.clear();
                 try {
                     for (var _e = __values(_this.app.container), _f = _e.next(); !_f.done; _f = _e.next()) {
                         var drawable = _f.value;
-                        if (_this.group.items.has(drawable) || _this.frame === drawable) {
-                            continue;
-                        }
-                        if (isRectanglesIntersection(_this.frame, drawable)) {
-                            _this.group.add(drawable);
+                        if (isRectanglesIntersection(_this.app.selector.frame, drawable)) {
+                            _this.app.selector.add(drawable);
                         }
                     }
                 }

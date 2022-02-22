@@ -34,6 +34,9 @@ var Frame = /** @class */ (function (_super) {
         return _this;
     }
     Frame.prototype.draw = function (context, canvas) {
+        if (!this.visible) {
+            return;
+        }
         context.beginPath();
         context.rect(this.x, this.y, this.width, this.height);
         context.fillStyle = this.background;

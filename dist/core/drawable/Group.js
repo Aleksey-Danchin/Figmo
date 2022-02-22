@@ -150,6 +150,9 @@ var Group = /** @class */ (function (_super) {
         _super.prototype.draw.call(this, context, canvas);
         context.restore();
     };
+    Group.prototype.clear = function () {
+        this.items.clear();
+    };
     Group.prototype[Symbol.iterator] = function () {
         var _a, _b, item, e_4_1;
         var e_4, _c;

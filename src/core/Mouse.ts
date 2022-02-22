@@ -1,4 +1,4 @@
-import EventEmitter from "./EventEmitter.js";
+import EventEmitter from "./common/EventEmitter.js";
 
 enum Button {
 	left = 0,

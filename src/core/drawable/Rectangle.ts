@@ -1,4 +1,4 @@
-import { isPointInRectanle } from "../util.js";
+import { isPointInRectanle } from "../common/util.js";
 import Group from "./Group";
 
 class Rectangle {

@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import EventEmitter from "./EventEmitter.js";
+import EventEmitter from "./common/EventEmitter.js";
 var Button;
 (function (Button) {
     Button[Button["left"] = 0] = "left";

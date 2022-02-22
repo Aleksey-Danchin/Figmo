@@ -12,12 +12,14 @@ var __values = (this && this.__values) || function(o) {
 import Canvas from "./Canvas.js";
 import Group from "./drawable/Group.js";
 import Mouse from "./Mouse.js";
-import Render from "./Render.js";
+import Render from "./common/Render.js";
+import Selector from "./drawable/Selector.js";
 var Application = /** @class */ (function () {
     function Application(data) {
         var e_1, _a, e_2, _b, e_3, _c;
         var _this = this;
         this.container = new Group();
+        this.selector = new Selector();
         this.modes = [];
         this.actions = new Map();
         this.root = data.root;
@@ -74,7 +76,8 @@ var Application = /** @class */ (function () {
             _this.mouse.tick();
             _this.canvas.clear();
             _this.canvas.draw(function (context, canvas) {
-                return _this.container.draw(context, canvas);
+                _this.container.draw(context, canvas);
+                _this.selector.draw(context, canvas);
             });
         });
     }

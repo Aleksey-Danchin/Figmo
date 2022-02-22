@@ -19,52 +19,10 @@ var Drawable = /** @class */ (function (_super) {
     function Drawable() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.visible = true;
-        _this.showBorder = false;
+        _this.selected = false;
         return _this;
     }
-    Drawable.prototype.draw = function (context, canvas) {
-        if (this.showBorder) {
-            context.beginPath();
-            context.moveTo(this.x, this.y);
-            context.lineTo(this.x + this.width, this.y);
-            context.lineTo(this.x + this.width, this.y + this.height);
-            context.lineTo(this.x, this.y + this.height);
-            context.closePath();
-            context.lineWidth = 1;
-            context.strokeStyle = "blue";
-            context.setLineDash([3, 3]);
-            context.stroke();
-            context.setLineDash([]);
-            context.beginPath();
-            context.arc(this.x, this.y, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-            context.beginPath();
-            context.arc(this.x + this.width, this.y, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-            context.beginPath();
-            context.arc(this.x + this.width, this.y + this.height, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-            context.beginPath();
-            context.arc(this.x, this.y + this.height, 5, 0, Math.PI * 2);
-            context.lineWidth = 1;
-            context.fillStyle = "white";
-            context.strokeStyle = "gray";
-            context.fill();
-            context.stroke();
-        }
-    };
+    Drawable.prototype.draw = function (context, canvas) { };
     Drawable.prototype.move = function (dx, dy) {
         this.x += dx;
         this.y += dy;

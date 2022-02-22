@@ -29,6 +29,10 @@ class Frame extends Drawable {
 	}
 
 	draw(context: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
+		if (!this.visible) {
+			return;
+		}
+
 		context.beginPath();
 		context.rect(this.x, this.y, this.width, this.height);
 		context.fillStyle = this.background;

@@ -36,6 +36,10 @@ class Group extends Drawable {
 		context.restore();
 	}
 
+	clear() {
+		this.items.clear();
+	}
+
 	*[Symbol.iterator](): Generator<Drawable> {
 		for (const item of this.items) {
 			if (item instanceof Group) {

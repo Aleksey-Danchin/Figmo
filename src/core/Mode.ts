@@ -1,5 +1,5 @@
 import Application from "./Application.js";
-import EventEmitter from "./EventEmitter.js";
+import EventEmitter from "./common/EventEmitter.js";
 
 export type ModeParams = {
 	autoStart?: boolean;

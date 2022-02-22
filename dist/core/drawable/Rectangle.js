@@ -1,4 +1,4 @@
-import { isPointInRectanle } from "../util.js";
+import { isPointInRectanle } from "../common/util.js";
 var Rectangle = /** @class */ (function () {
     function Rectangle(x, y, width, height) {
         if (x === void 0) { x = 0; }

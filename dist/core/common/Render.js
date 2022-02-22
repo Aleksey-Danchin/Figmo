@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import Observer from "./common/Observer.js";
+import Observer from "./Observer.js";
 var Render = /** @class */ (function (_super) {
     __extends(Render, _super);
     function Render() {
